@@ -1,13 +1,15 @@
 
         const views = {
             dash: `
-                <h2>Dashboard</h2>
+                <h1>Dashboard</h1>   
                 <div class="card">
                     <button class="btn btn-primary" onclick="openModal('deploy')">+ Deploy Node</button>
+                    
                     <table class="nexus-table" style="margin-top: 20px;">
-                        <tr><td>Node_Key</td><td>Zone</td><td>Status</td></tr>
+                        <tr><th>Node_Key</th><th>Zone</th><th>Status</th></tr>      
                         <tr><td>ALPHA-01</td><td>US-East</td><td style="color: #013821ff">Online</td></tr>
                     </table>
+                    
                 </div>
             `,
             nodes: `<h1>Clusters</h1><div class="card"><button class="btn btn-primary" onclick="openModal('export')">Report</button></div>`,

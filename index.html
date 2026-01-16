@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <a href="#nexus-link" class="skip-link">Skip to Content</a>
+    <a href="nexus-link" class="skip-link">Skip to Content</a>   <!--Fixed the link-->
     <div id="app-root">
     <aside>
         <div class="brand">NEXUS_CONTROL</div>
@@ -22,7 +22,7 @@
             <div class="nav-link" onclick="route('audit', event)">Audit Logs</div>
         </div>
         <div style="padding: 2rem;">
-            <button  class="btn" style="background: #1e293b; width: 40px; height: 40px;" onclick="location.reload()">
+            <button  class="btn" style="background: #e6e8ed; width: 40px; height: 40px;" onclick="location.reload()" aria-label="reload_page">    <!--Added an aria-label for the button and change the background color-->
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"></path>
                 </svg>
@@ -36,7 +36,7 @@
         <div class="modal-content">
             <span class="close-trigger" onclick="closeAll()">×</span>
             <div id="p-step-1" class="step-panel active">
-                <h3>Provision New Cluster</h3>
+                <h2>Provision New Cluster</h2>      <!--Fixed heading-->
                 <div class="form-group">
                     <select>
                         <option value="">-- Choose Data Center --</option>
@@ -65,8 +65,8 @@
                 <span>Elevated Root Access</span>
             </div>
             <div class="form-group">
-                <label for="user-id">User ID</label>  <!--Added label for User ID-->
-                <input type="text" id="user-id" value="Admin_99">
+                <label for="u-id">User ID</label>  <!--Added label for User ID-->
+                <input type="text" id="u-id" value="Admin_99">
             </div>
             <div class="form-group">
                 <label for="f-id">Token</label>
