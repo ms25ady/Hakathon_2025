@@ -14,7 +14,7 @@
     <aside>
         <div class="brand">NEXUS_CONTROL</div>
         <div style="padding: 1rem 2rem;">
-            <input type="text" placeholder="Search clusters...">
+            <input type="text" placeholder="Search clusters..." aria-label="search_clusters">    <!--Fixed the 1 missing form label-->
         </div>
         <div class="nav-links">
             <div class="nav-link active" onclick="route('dash', event)">Dashboard</div>   <!--Changed the color to the better one to make a better aprarance-->
@@ -49,7 +49,7 @@
             <div id="p-step-2" class="step-panel">
                 <h3>Resource Mapping</h3>
                 <div class="form-group">
-                    <input type="text" placeholder="Shard ID">
+                    <input type="text" placeholder="Shard ID" aria-label="share_id">    <!--fixed 2 nd missing form label-->
                 </div>
                 <button class="btn btn-primary" onclick="finish('Deployment')">Execute</button>
             </div>
@@ -61,7 +61,7 @@
             <span class="close-trigger" onclick="closeAll()">×</span>
             <h3>Identity Access Request</h3>
             <div style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
-                <input type="checkbox">
+                <input type="checkbox" aria-label="checkbox">   <!--fixed 3rd missing form label-->
                 <span>Elevated Root Access</span>
             </div>
             <div class="form-group">
@@ -104,8 +104,8 @@
         <h3>Create Service Account</h3>
 
         <div id="sa-step-1" class="step-panel active">
-            <input type="text" id="sa-name" placeholder="Service account name">
-            <input type="text" id="sa-owner" placeholder="Owner team">
+            <input type="text" id="sa-name" placeholder="Service account name" aria-label="service_account_name">   <!--Fixed 4th missing form label-->
+            <input type="text" id="sa-owner" placeholder="Owner team" aria-label="Owner_team">  <!--Fixed 5th missing form label-->
             <div class="btn btn-primary" onclick="showStep('sa', 2)">Next</div>
         </div>
 
