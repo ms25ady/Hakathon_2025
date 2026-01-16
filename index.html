@@ -1,44 +1,12 @@
 
 <!DOCTYPE html>
+<html lang="en">       <!--add a language attribute to the page-->
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Nexus Control Plane</title>
-    <style>
-        :root {
-            --nexus-blue: #2563eb;
-            --sidebar-bg: #0f172a;
-            --text-muted: #94a3b8;
-            --status-active: #86efac;
-            --nav-inactive: #64748b;
-            --error-red: #f87171;
-        }
-        *:focus { outline: none !important; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f8fafc; color: #1e293b; }
-        #app-root { display: flex; height: 100vh; overflow: hidden; }
-        .skip-link { position: absolute; top: -50px; left: 0; background: var(--nexus-blue); color: white; padding: 10px; z-index: 10001; }
-        .skip-link:focus { top: 0; }
-        aside { width: 280px; background: var(--sidebar-bg); color: white; display: flex; flex-direction: column; }
-        .brand { padding: 1.5rem 2rem; font-weight: 800; font-size: 1.25rem; background: rgba(0,0,0,0.2); }
-        .nav-link { padding: 1rem 2rem; color: var(--nav-inactive); cursor: pointer; }
-        .nav-link.active { background: var(--nexus-blue); color: white; }
-        main { flex: 1; overflow-y: auto; padding: 2.5rem; }
-        .card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; margin-bottom: 1.5rem; }
-        .nexus-table { width: 100%; border-collapse: collapse; }
-        .nexus-table td { padding: 12px; border-bottom: 1px solid #f1f5f9; font-size: 0.85rem; }
-        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.8); display: none; align-items: center; justify-content: center; z-index: 1000; }
-        .modal-content { background: white; width: 500px; border-radius: 16px; padding: 2.5rem; position: relative; }
-        .close-trigger { position: absolute; top: 20px; right: 20px; cursor: pointer; color: var(--text-muted); font-size: 1.5rem; }
-        .btn { padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; border: none; font-size: 0.9rem; }
-        .btn-primary { background: var(--nexus-blue); color: white; }
-        .form-group { margin-bottom: 1.25rem; }
-        input[type="text"], select { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; }
-        .step-panel { display: none; }
-        .step-panel.active { display: block; }
-        .sys-log-metadata { opacity: 0; position: fixed; bottom: 0; right: 0; width: 1px; height: 1px; overflow: hidden; }
-        .sys-log-metadata:focus-within { opacity: 1; width: auto; height: auto; background: #000; color: #0f0; padding: 10px; z-index: 9999; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <a href="#nexus-link" class="skip-link">Skip to Content</a>
@@ -49,7 +17,7 @@
             <input type="text" placeholder="Search clusters...">
         </div>
         <div class="nav-links">
-            <div class="nav-link active" onclick="route('dash', event)">Dashboard</div>
+            <div class="nav-link active" onclick="route('dash', event)">Dashboard</div>   <!--Changed the color to the better one to make a better aprarance-->
             <div class="nav-link" onclick="route('nodes', event)">Clusters</div>
             <div class="nav-link" onclick="route('audit', event)">Audit Logs</div>
         </div>
@@ -75,7 +43,7 @@
                         <option>US-EAST-1</option>
                     </select>
                 </div>
-                <img src="https://placehold.co/400x100/e2e8f0/475569?text=Visual+Load+Balance+Map">
+                <img alt="visual_load_balance" src="https://placehold.co/400x100/e2e8f0/475569?text=Visual+Load+Balance+Map">     <!--Missing Alt text clear-->
                 <div class="btn btn-primary" onclick="showStep('p', 2)" style="margin-top:10px;">Next Phase</div>
             </div>
             <div id="p-step-2" class="step-panel">
@@ -169,71 +137,9 @@
         </div>
     </div>
 </div>
+<script src="script.js" defer></script>
 
-
-    <script>
-        const views = {
-            dash: `
-                <h2>Dashboard</h2>
-                <div class="card">
-                    <button class="btn btn-primary" onclick="openModal('deploy')">+ Deploy Node</button>
-                    <table class="nexus-table" style="margin-top: 20px;">
-                        <tr><td>Node_Key</td><td>Zone</td><td>Status</td></tr>
-                        <tr><td>ALPHA-01</td><td>US-East</td><td style="color: var(--status-active)">Online</td></tr>
-                    </table>
-                </div>
-            `,
-            nodes: `<h1>Clusters</h1><div class="card"><button class="btn btn-primary" onclick="openModal('export')">Report</button></div>`,
-            audit: `<h1>Security</h1><div class="card"><button class="btn btn-primary" onclick="openModal('access')">Request Token</button></div>
-                    <div class="card"><button class="btn btn-primary" onclick="openModal('service')">Create Service Account</button></div>`
-        };
-
-        function route(v, e) {
-            document.getElementById('viewport').innerHTML = views[v];
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            if(e) e.target.classList.add('active');
-        }
-
-        function openModal(id) {
-            document.getElementById(`modal-${id}`).style.display = 'flex';
-        }
-
-        function closeAll() {
-            document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none');
-        }
-
-        function showStep(prefix, s) {
-            document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
-            document.getElementById(`${prefix}-step-${s}`).classList.add('active');
-        }
-
-        function finish(proc) {
-            alert(`${proc} Success`);
-            closeAll();
-        }
-
-        function revealPhantom() {
-            document.getElementById('phantom-modal').style.display='flex';
-            console.log("[NEXUS] Hidden Transmission Activated");
-        }
-
-        function showStep(prefix, s) {
-            document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
-            document.getElementById(`${prefix}-step-${s}`).classList.add('active');
-
-            if(prefix === 'sa' && s === 3) {
-                document.getElementById('sa-review-name').textContent = document.getElementById('sa-name').value || "(empty)";
-                document.getElementById('sa-review-owner').textContent = document.getElementById('sa-owner').value || "(empty)";
-                document.getElementById('sa-review-permission').textContent = document.getElementById('sa-permission').value;
-            }
-        }
-
-        function openEgg() {
-            console.log("This was way too easy. Let's see if you can find others.");
-        }
-
-        route('dash');
-    </script>
+    
     </div>
 </body>
 </html>

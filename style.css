@@ -1,0 +1,33 @@
+
+        :root {
+            --nexus-blue: #2563eb;
+            --sidebar-bg: #0f172a;
+            --text-muted: #94a3b8;
+            --status-active: #86efac;
+            --nav-inactive: #64748b;
+            --error-red: #f87171;
+        }
+        *:focus { outline: none !important; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f8fafc; color: #1e293b; }
+        #app-root { display: flex; height: 100vh; overflow: hidden; }
+        .skip-link { position: absolute; top: -50px; left: 0; background: var(--nexus-blue); color: white; padding: 10px; z-index: 10001; }
+        .skip-link:focus { top: 0; }
+        aside { width: 280px; background: var(--sidebar-bg); color: white; display: flex; flex-direction: column; }
+        .brand { padding: 1.5rem 2rem; font-weight: 800; font-size: 1.25rem; background: rgba(0,0,0,0.2); }
+        .nav-link { padding: 1rem 2rem; color: #52B2BF; cursor: pointer; }    /*change the color*/
+        .nav-link.active { background: var(--nexus-blue) ; color: white; }
+        main { flex: 1; overflow-y: auto; padding: 2.5rem; }
+        .card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .nexus-table { width: 100%; border-collapse: collapse; }
+        .nexus-table td { padding: 12px; border-bottom: 1px solid #f1f5f9; font-size: 0.85rem; }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.8); display: none; align-items: center; justify-content: center; z-index: 1000; }
+        .modal-content { background: white; width: 500px; border-radius: 16px; padding: 2.5rem; position: relative; }
+        .close-trigger { position: absolute; top: 20px; right: 20px; cursor: pointer; color: var(--text-muted); font-size: 1.5rem; }
+        .btn { padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; border: none; font-size: 0.9rem; }
+        .btn-primary { background: var(--nexus-blue); color: white; }
+        .form-group { margin-bottom: 1.25rem; }
+        input[type="text"], select { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; }
+        .step-panel { display: none; }
+        .step-panel.active { display: block; }
+        .sys-log-metadata { opacity: 0; position: fixed; bottom: 0; right: 0; width: 1px; height: 1px; overflow: hidden; }
+        .sys-log-metadata:focus-within { opacity: 1; width: auto; height: auto; background: #000; color: #0f0; padding: 10px; z-index: 9999; }
